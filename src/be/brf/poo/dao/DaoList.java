@@ -5,6 +5,7 @@ import be.brf.poo.Data;
 import java.rmi.UnexpectedException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.regex.Pattern;
 
 public class DaoList implements IDao{
@@ -13,17 +14,27 @@ public class DaoList implements IDao{
 
     @Override
     public ArrayList<Data> findAll() {
-        return null;
+        return list;
     }
 
     @Override
     public Data find(int nro) {
-        return null;
+        return list.get(nro);
     }
 
     @Override
     public ArrayList<Data> findByLevel(int level) {
-        return null;
+        ArrayList<Data> result = new ArrayList<>();
+        Iterator<Data> it = list.iterator();
+
+        while(it.hasNext()){
+            Data d = it.next();
+
+            if (d.getLevel()==level){
+                result.add(d);
+            };
+        }
+        return result;
     }
 
     @Override
