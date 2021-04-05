@@ -9,10 +9,21 @@ import java.util.Iterator;
 import java.util.regex.Pattern;
 
 public class DaoList implements IDao{
-    //DonnÃ©es membres
-    ArrayList<Data> list = new ArrayList<Data>();
+    //Données membres
+    ArrayList<Data> list;
+    
 
-    @Override
+    public DaoList() {
+		super();
+		this.list = new ArrayList<>();
+		
+		list.add(new Data ("Salutation",1,true));
+		list.add(new Data("Bien le bonjour !",3,false));
+		list.add(new Data("Ciao!",2,true));
+		list.add(new Data("You are welcome",2,true));
+	}
+
+	@Override
     public ArrayList<Data> findAll() {
         return list;
     }
@@ -44,7 +55,16 @@ public class DaoList implements IDao{
 
     @Override
     public void update(Data data, String info, int level, boolean free) {
-
+    	for (Data data1 : list) {
+			if(data1.equals(data)) {
+				data1.setInfo(info);
+				data1.setLevel(level);
+				data1.setFree(free);
+				
+				System.out.println("L'update à bien été effectué");
+			}
+		}
+    	
     }
 
     @Override
